@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>home</h1>
+    <h1>"gotta catch em all"</h1>
   </div>
 </template>
 
@@ -12,3 +12,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@use '../assets/variables' as v;
+
+h1{
+  font-family: pokemonSolid, serif;
+  font-weight: normal;
+}
+</style>

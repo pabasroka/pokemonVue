@@ -15,14 +15,27 @@ export default {
 }
 </script>
 
-<style scoped>
-#nav a{
+<style lang="scss" scoped>
+@use '../assets/variables' as v;
+
+#nav {
+  background: v.$white;
   padding: 30px;
-  color: blue;
-  font-size: 22px;
-  font-weight: bold;
-}
-#nav a.router-link-exact-active{
-  color: red;
+
+  a{
+    padding: 30px;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: pokemonSolid;
+    letter-spacing: 3px;
+    text-decoration: none;
+    text-shadow: -2px -2px 0 v.$yellow, 2px -2px 0 v.$yellow, -2px 2px 0 v.$yellow, 2px 2px 0 v.$yellow;
+  }
+
+  a.router-link-exact-active{
+    color: v.$yellow;
+    text-shadow: -5px -5px 0 #000, 5px -5px 0 #000, -5px 5px 0 #000, 5px 5px 0 #000;
+  }
 }
 </style>
