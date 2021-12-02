@@ -28,7 +28,7 @@ export default {
 }
 
 * {
-  font-family: pokemonHollow, serif;
+  font-family: pokemonSolid, serif;
 }
 
 body {

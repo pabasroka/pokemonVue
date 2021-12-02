@@ -1,15 +1,19 @@
 <template>
-  <div class="home">
-    <h1>"gotta catch em all"</h1>
-  </div>
+
+  <h1>"gotta catch em all"</h1>
+  <SearchBar />
+
 </template>
 
 <script>
 
+import SearchBar from "@/components/SearchBar";
+
 export default {
   name: 'Home',
   components: {
-  }
+    SearchBar,
+  },
 }
 </script>
 
@@ -17,7 +21,10 @@ export default {
 @use '../assets/variables' as v;
 
 h1{
+  padding: 50px 0;
   font-family: pokemonSolid, serif;
+  letter-spacing: 2px;
   font-weight: normal;
+  font-size: xxx-large;
 }
 </style>

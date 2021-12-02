@@ -21,6 +21,7 @@ export default {
 #nav {
   background: v.$white;
   padding: 30px;
+  box-shadow: 0 5px 4px 0 rgba(0,0,0,.2);
 
   a{
     padding: 30px;
