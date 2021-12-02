@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div id="nav" v-if="!showNav" :class="{'open': showNav}">
+    <div id="nav" v-if="showNav" :class="{'open': !showNav}">
       <ul>
         <li>
           <router-link to="/" @click="showNav = !showNav">HOME</router-link>
