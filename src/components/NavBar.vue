@@ -24,11 +24,11 @@ export default {
   box-shadow: 0 5px 4px 0 rgba(0,0,0,.2);
 
   a{
-    padding: 30px;
+    padding: 50px;
     color: black;
-    font-size: 22px;
+    font-size: 32px;
     font-weight: bold;
-    font-family: pokemonSolid;
+    font-family: pokemonSolid, serif;
     letter-spacing: 3px;
     text-decoration: none;
     text-shadow: -2px -2px 0 v.$yellow, 2px -2px 0 v.$yellow, -2px 2px 0 v.$yellow, 2px 2px 0 v.$yellow;

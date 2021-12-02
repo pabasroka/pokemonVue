@@ -1,18 +1,32 @@
 <template>
 
   <h1>"gotta catch em all"</h1>
-  <SearchBar />
+  <SearchBar @pokemon="apiResponse"/>
+  <Pokemon :apidata="apidata" v-if="apidata"/>
 
 </template>
 
 <script>
 
 import SearchBar from "@/components/SearchBar";
+import Pokemon from "@/components/Pokemon";
 
 export default {
   name: 'Home',
   components: {
     SearchBar,
+    Pokemon,
+  },
+  data() {
+    return {
+      apidata: null,
+    }
+  },
+  methods: {
+    apiResponse(apidata) {
+      this.apidata = apidata;
+      this.$forceUpdate();
+    }
   },
 }
 </script>

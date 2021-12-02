@@ -2,17 +2,29 @@
 
   <div class="search-wrapper">
 
-      <input type="text" v-model="phrase" placeholder="type eg. Magikarp">
+      <input
+          type="text"
+          v-model="phrase"
+          placeholder="type eg. Magikarp"
+          :class="[mobileView ? 'm-search' : 'search',searchError ? 'error' : '']"
+          @keyup.enter="getPokemon"
+      >
 
       <button
           :class="{ invisible: !phrase }"
-          class="search"
-          v-on:click="getPokemon"
+          class="search-button"
+          @click="getPokemon"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
       </button>
+
+      <p v-if="searchError" class="error">
+        Incorrect phrase
+      </p>
+
+    <PulseLoader :loading="loading" :color="'#3b3b00'" :size="'70px'"></PulseLoader>
 
   </div>
 
@@ -20,34 +32,54 @@
 
 <script>
 import axios from "axios";
+import PulseLoader from 'vue-spinner/src/PulseLoader';
 
 export default {
   name: "SearchBar",
+  components: {
+    PulseLoader,
+  },
   data() {
     return {
       phrase: '',
+      mobileView: false,
+      searchError: false,
+      loading: false,
     }
   },
   methods: {
     test() {
       console.log(this.phrase);
     },
-    getPokemon() {
+    async getPokemon() {
+      this.loading = true;
+      this.searchError = false;
       const basePath = "https://pokeapi.co/api/v2/";
       const findPokemon = "pokemon/";
-      const url = basePath + findPokemon + this.phrase;
-      axios
-          .get(url)
-          .then(response => (this.info = response.data))
-    }
-  }
+      const url = basePath + findPokemon + this.phrase.toLowerCase();
+      try {
+        const apiResponse = await axios(url);
+        this.$emit('pokemon', apiResponse.data)
+      } catch (e) {
+        console.error(e);
+        this.searchError = true;
+      } finally {
+        this.loading = false;
+      }
+    },
+    handleView() {
+      this.mobileView = window.innerWidth <= 990;
+    },
+  },
+  created() {
+    this.handleView();
+    window.addEventListener('resize', this.handleView);
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 @use '../assets/variables' as v;
-
-
 
 .search-wrapper {
 
@@ -59,7 +91,6 @@ export default {
     background: v.$white;
     flex-grow: 2;
     border-radius: 10px;
-    width: 40vw;
     height: 50px;
   }
 
@@ -78,11 +109,25 @@ export default {
     cursor: pointer;
   }
 
+  .search {
+    width: 20vw;
+  }
+
+  .error {
+    color: red;
+    border-color: red;
+  }
+
 }
 
-.search {
+.search-button {
   border: none;
   background: #e0e0e0;
+}
+
+//mobile
+.m-search {
+  width: 80vw;
 }
 
 
