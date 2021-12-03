@@ -24,10 +24,6 @@
       </div>
     </div>
 
-<!--    <div class="pokemon-image">-->
-<!--      <img v-bind:src="apidata.sprites.front_default" alt="sprite front">-->
-<!--      <img v-bind:src="apidata.sprites.back_default" alt="sprite back" class="image-back">-->
-<!--    </div>-->
 
     <div class="pokemon-info">
 
@@ -46,37 +42,33 @@
 <script>
 export default {
   name: "Pokemon",
-  props: ['apidata'],
+  props: ['apidata', 'color'],
   data() {
     return {
+      colorType: this.color,
     }
   },
-  created() {
-    console.log(this.apidata);
-  }
 }
 </script>
 
 <style lang="scss" scoped>
 @use '../assets/variables' as v;
 
-
-
 .pokemon-wrapper {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
   box-shadow: 0 14px 18px 0 rgba(0,0,0,0.4);
-  border: 15px solid green;
+  border: 15px solid v-bind(colorType);
   border-radius: 15px;
   transition: 0.3s;
-  background: lighten(green, 50%);
+  background: v-bind(colorType);
 
   .pokemon-name {
     padding-left: 50px;
     text-align: start;
-    color: green;
-    text-shadow: -1px -1px 0 darken(green, 50%), 1px -1px 0 darken(green, 50%), -1px 1px 0 darken(green, 50%), 1px 1px 0 darken(green, 50%);
+    color: v-bind(colorType);
+    text-shadow: -1px -1px 0 v-bind(colorType), 1px -1px 0 v-bind(colorType), -1px 1px 0 v-bind(colorType), 1px 1px 0 v-bind(colorType);
   }
   .underline {
     font-size: 25px;
@@ -89,7 +81,7 @@ export default {
     position : absolute;
     width : 25%;
     height : 3px;
-    background-color: green;
+    background-color: v-bind(colorType);
     bottom: 0;
     left: 0;
   }
@@ -117,12 +109,10 @@ export default {
       transform-style: preserve-3d;
     }
 
-    /* Do an horizontal flip when you move the mouse over the flip box container */
     .pokemon-image:hover .pokemon-image-inner {
       transform: rotateY(180deg);
     }
 
-    /* Position the front and back side */
     .pokemon-image-front, .pokemon-image-back{
       position: absolute;
       width: 100%;

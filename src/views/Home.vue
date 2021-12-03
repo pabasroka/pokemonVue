@@ -4,7 +4,7 @@
 
   <SearchBar @pokemon="apiResponse"/>
 
-  <Pokemon :apidata="apidata" v-if="apidata" class="pokemon-card"/>
+  <Pokemon :apidata="apidata" :color="colorType" v-if="apidata" class="pokemon-card"/>
 
 </template>
 
@@ -22,11 +22,23 @@ export default {
   data() {
     return {
       apidata: null,
+      colorType: '#c0c0c0',
     }
   },
   methods: {
     apiResponse(apidata) {
       this.apidata = apidata;
+      switch (this.apidata.types[0].name) {
+        case 'normal':
+          this.colorType = '#c0c0c0'
+          break;
+        case 'water':
+          this.colorType = '#0909f5'
+          break;
+        default:
+          this.colorType = '#c0c0c0'
+          break;
+      }
       this.$forceUpdate();
     }
   },
