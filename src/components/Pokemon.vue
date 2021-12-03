@@ -2,10 +2,45 @@
 
   <div class="pokemon-wrapper">
 
+    <div class="pokemon-name">
+      <p class="underline">
+        {{ apidata.name.toUpperCase() }}
+      </p>
+    </div>
+
+    <div class="pokemon-image-wrapper">
+      <div class="pokemon-image">
+        <div class="pokemon-image-inner">
+
+          <div class="pokemon-image-front">
+            <img v-bind:src="apidata.sprites.front_default" alt="sprite front">
+          </div>
+
+          <div class="pokemon-image-back">
+            <img v-bind:src="apidata.sprites.back_default" alt="sprite back">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+<!--    <div class="pokemon-image">-->
+<!--      <img v-bind:src="apidata.sprites.front_default" alt="sprite front">-->
+<!--      <img v-bind:src="apidata.sprites.back_default" alt="sprite back" class="image-back">-->
+<!--    </div>-->
+
+    <div class="pokemon-info">
+
+      <ul>
+        <li v-for="ability in apidata.abilities" :key="ability.name">
+          {{ ability.name }} jakis tekst
+        </li>
+      </ul>
+
+    </div>
+
   </div>
 
-  <h1>{{ apidata.name.toUpperCase() }}</h1>
-  <img v-bind:src="apidata.sprites.front_default" alt="sprite">
 </template>
 
 <script>
@@ -28,7 +63,98 @@ export default {
 
 
 .pokemon-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  box-shadow: 0 14px 18px 0 rgba(0,0,0,0.4);
+  border: 15px solid green;
+  border-radius: 15px;
+  transition: 0.3s;
+  background: lighten(green, 50%);
+
+  .pokemon-name {
+    padding-left: 50px;
+    text-align: start;
+    color: green;
+    text-shadow: -1px -1px 0 darken(green, 50%), 1px -1px 0 darken(green, 50%), -1px 1px 0 darken(green, 50%), 1px 1px 0 darken(green, 50%);
+  }
+  .underline {
+    font-size: 25px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    position: relative;
+  }
+  .underline:after {
+    content : "";
+    position : absolute;
+    width : 25%;
+    height : 3px;
+    background-color: green;
+    bottom: 0;
+    left: 0;
+  }
+
+  .pokemon-image-wrapper, .pokemon-info {
+    display: inline-block;
+    box-sizing: border-box;
+  }
+
+  .pokemon-image-wrapper {
+    width: 20%;
+    padding-left: 50px;
+
+    .pokemon-image {
+      background-color: transparent;
+      width: 200px;
+      height: 200px;
+    }
+
+    .pokemon-image-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    /* Do an horizontal flip when you move the mouse over the flip box container */
+    .pokemon-image:hover .pokemon-image-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* Position the front and back side */
+    .pokemon-image-front, .pokemon-image-back{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden; /* Safari */
+      backface-visibility: hidden;
+    }
+
+    .pokemon-image-back {
+      transform: rotateY(180deg);
+    }
+
+    img {
+      width: 120%;
+    }
+
+  }
+
+  .pokemon-info {
+    width: 80%;
+    padding: 0 50px;
+
+    ul {
+      li {
+        list-style-type: none;
+      }
+    }
+
+  }
 
 }
+
+
 
 </style>

@@ -1,8 +1,10 @@
 <template>
 
   <h1>"gotta catch em all"</h1>
+
   <SearchBar @pokemon="apiResponse"/>
-  <Pokemon :apidata="apidata" v-if="apidata"/>
+
+  <Pokemon :apidata="apidata" v-if="apidata" class="pokemon-card"/>
 
 </template>
 
@@ -41,4 +43,10 @@ h1{
   font-weight: normal;
   font-size: xxx-large;
 }
+
+.pokemon-card {
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+
 </style>

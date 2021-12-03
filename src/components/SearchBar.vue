@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      phrase: '',
+      phrase: 'magikarp',
       mobileView: false,
       searchError: false,
       loading: false,
