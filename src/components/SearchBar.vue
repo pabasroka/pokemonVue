@@ -14,6 +14,7 @@
           :class="{ invisible: !phrase }"
           class="search-button"
           @click="getPokemon"
+          v-if="mobileView"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -48,32 +49,30 @@ export default {
     }
   },
   methods: {
-    test() {
-      console.log(this.phrase);
-    },
     async getPokemon() {
-      this.loading = true;
-      this.searchError = false;
-      const basePath = "https://pokeapi.co/api/v2/";
-      const findPokemon = "pokemon/";
-      const url = basePath + findPokemon + this.phrase.toLowerCase();
+      this.loading = true
+      this.searchError = false
+      const basePath = "https://pokeapi.co/api/v2/"
+      const findPokemon = "pokemon/"
+      const url = basePath + findPokemon + this.phrase.toLowerCase()
       try {
-        const apiResponse = await axios(url);
-        this.$emit('pokemon', apiResponse.data)
+        const apiResponse = await axios(url)
+        this.$emit('clear')
+        this.$emit('pokemonResponse', apiResponse.data)
       } catch (e) {
         console.error(e);
-        this.searchError = true;
+        this.searchError = true
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     },
     handleView() {
-      this.mobileView = window.innerWidth <= 990;
+      this.mobileView = window.innerWidth <= 990
     },
   },
   created() {
-    this.handleView();
-    window.addEventListener('resize', this.handleView);
+    this.handleView()
+    window.addEventListener('resize', this.handleView)
   },
 }
 </script>
@@ -83,19 +82,29 @@ export default {
 
 .search-wrapper {
 
+  margin-bottom: 100px;
+
   .invisible {
     visibility: hidden;
   }
 
   input {
-    background: v.$white;
+    background: none;
     flex-grow: 2;
-    border-radius: 10px;
     height: 50px;
+    border: 0;
+    border-bottom: 2px solid black;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    transition: box-shadow .5s;
+    text-align: center;
   }
 
   input:focus {
     outline: none;
+    -webkit-box-shadow: 0px 24px 17px -7px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 24px 17px -7px rgba(0, 0, 0, 1);
+    box-shadow: 0px 24px 17px -7px rgba(0, 0, 0, 1);
   }
 
   button {

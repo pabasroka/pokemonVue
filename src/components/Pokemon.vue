@@ -42,17 +42,37 @@
 <script>
 export default {
   name: "Pokemon",
-  props: ['apidata', 'color'],
+  props: ['apidata'],
   data() {
     return {
-      colorType: this.color,
+      colorType: '#7f139b',
     }
+  },
+  methods: {
+  },
+  created() {
+    switch (this.apidata.types[0].type.name) {
+      case 'normal':
+        this.colorType = '#ea1b1b'
+        break;
+      case 'water':
+        this.colorType = '#0909f5'
+        break;
+      case 'electric':
+        this.colorType = '#efef30'
+        break;
+      default:
+        this.colorType = '#7f139b'
+        break;
+      }
   },
 }
 </script>
 
 <style lang="scss" scoped>
 @use '../assets/variables' as v;
+
+$colorType: b-vind(colorType);
 
 .pokemon-wrapper {
   margin-left: auto;
@@ -67,7 +87,7 @@ export default {
   .pokemon-name {
     padding-left: 50px;
     text-align: start;
-    color: v-bind(colorType);
+    color: black;
     text-shadow: -1px -1px 0 v-bind(colorType), 1px -1px 0 v-bind(colorType), -1px 1px 0 v-bind(colorType), 1px 1px 0 v-bind(colorType);
   }
   .underline {
@@ -81,7 +101,7 @@ export default {
     position : absolute;
     width : 25%;
     height : 3px;
-    background-color: v-bind(colorType);
+    background-color: black;
     bottom: 0;
     left: 0;
   }

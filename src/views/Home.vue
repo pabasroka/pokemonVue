@@ -2,9 +2,19 @@
 
   <h1>"gotta catch em all"</h1>
 
-  <SearchBar @pokemon="apiResponse"/>
+  <div class="desc">
+    <p>
+      the journey starts today! pokémon are living creatures that inhabit the pokémon world, living alongside, and usually helping, humans.
+    </p>
 
-  <Pokemon :apidata="apidata" :color="colorType" v-if="apidata" class="pokemon-card"/>
+    <p>
+      type any pokémon name to start.
+    </p>
+  </div>
+
+  <SearchBar @change="clear" @pokemonResponse="getPokemon"/>
+
+  <Pokemon :apidata="apidata" v-if="apidata" class="pokemon-card"/>
 
 </template>
 
@@ -22,24 +32,14 @@ export default {
   data() {
     return {
       apidata: null,
-      colorType: '#c0c0c0',
     }
   },
   methods: {
-    apiResponse(apidata) {
-      this.apidata = apidata;
-      switch (this.apidata.types[0].name) {
-        case 'normal':
-          this.colorType = '#c0c0c0'
-          break;
-        case 'water':
-          this.colorType = '#0909f5'
-          break;
-        default:
-          this.colorType = '#c0c0c0'
-          break;
-      }
-      this.$forceUpdate();
+    getPokemon(apidata) {
+      this.apidata = apidata
+    },
+    clear() {
+      this.apidata = null
     }
   },
 }
@@ -53,7 +53,13 @@ h1{
   font-family: pokemonSolid, serif;
   letter-spacing: 2px;
   font-weight: normal;
-  font-size: xxx-large;
+  font-size: 70px;
+}
+
+.desc {
+  margin: auto;
+  width: 40vw;
+  text-align: center;
 }
 
 .pokemon-card {
