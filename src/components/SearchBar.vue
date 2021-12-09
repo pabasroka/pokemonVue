@@ -94,8 +94,8 @@ export default {
     height: 50px;
     border: 0;
     border-bottom: 2px solid black;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     transition: box-shadow .5s;
     text-align: center;
   }
@@ -105,6 +105,7 @@ export default {
     -webkit-box-shadow: 0px 24px 17px -7px rgba(0, 0, 0, 1);
     -moz-box-shadow: 0px 24px 17px -7px rgba(0, 0, 0, 1);
     box-shadow: 0px 24px 17px -7px rgba(0, 0, 0, 1);
+    background: #00000020;
   }
 
   button {
