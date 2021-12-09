@@ -58,7 +58,8 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  background: v.$yellow;
+  min-height: 100%;
+  background: linear-gradient(to bottom, v.$yellow, darken(v.$yellow, 40%)) fixed;
 }
 
 #app {

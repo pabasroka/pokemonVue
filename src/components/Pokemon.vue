@@ -24,14 +24,42 @@
       </div>
     </div>
 
-
     <div class="pokemon-info">
 
-      <ul>
-        <li v-for="ability in apidata.abilities" :key="ability.name">
-          {{ ability.name }} jakis tekst
-        </li>
-      </ul>
+      <div class="abilities">
+        <h3>
+          <span v-if="apidata.abilities.length > 1">
+            ABILITIES:
+          </span>
+          <span v-else>
+            ABILITY:
+          </span>
+        </h3>
+
+        <ul>
+          <template v-for="ability in apidata.abilities" :key="ability">
+            <li v-for="element in ability" :key="element.name">
+              {{ element.name }}
+            </li>
+          </template>
+        </ul>
+      </div>
+
+      <div class="stats">
+
+        <ul>
+            <li v-for="stats in apidata.stats" :key="stats">
+              {{ stats.stat.name }}:
+              {{ stats.base_stat }}
+            </li>
+        </ul>
+
+        <ul>
+          <li>base experience: {{ apidata.base_experience }}</li>
+          <li>weight: {{ apidata.weight }}</li>
+        </ul>
+      </div>
+
 
     </div>
 
@@ -92,7 +120,7 @@ export default {
 
   .pokemon-image-wrapper {
     width: 20%;
-    padding-left: 50px;
+    padding: 0 50px;
 
     .pokemon-image {
       background-color: transparent;
@@ -125,19 +153,34 @@ export default {
     }
 
     img {
-      width: 120%;
+      width: 100%;
+      height: auto;
     }
 
   }
 
   .pokemon-info {
     width: 80%;
-    padding: 0 50px;
+    vertical-align: top;
+    padding: 0 20px 50px 50px;
+
+    h3 {
+      letter-spacing: 2px;
+      text-align: start;
+    }
 
     ul {
+      padding: 0;
+      margin: 0;
       li {
         list-style-type: none;
       }
+    }
+
+    .abilities, .stats {
+      display: inline-block;
+      padding: 0 50px;
+      vertical-align: top;
     }
   }
 }
@@ -157,7 +200,7 @@ export default {
 }
 
 .water {
-  color: darken(v.$water, 30%);
+  color: darken(v.$water, 40%);
   background: v.$water;
   border: 15px solid darken(v.$water, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$water, 30%);
@@ -170,7 +213,7 @@ export default {
 }
 
 .electric {
-  color: darken(v.$electric, 30%);
+  color: darken(v.$electric, 40%);
   background: v.$electric;
   border: 15px solid darken(v.$electric, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$electric, 30%);
@@ -183,7 +226,7 @@ export default {
 }
 
 .fire {
-  color: darken(v.$fire, 30%);
+  color: darken(v.$fire, 40%);
   background: v.$fire;
   border: 15px solid darken(v.$fire, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$fire, 30%);
@@ -196,7 +239,7 @@ export default {
 }
 
 .grass {
-  color: darken(v.$grass, 30%);
+  color: darken(v.$grass, 40%);
   background: v.$grass;
   border: 15px solid darken(v.$grass, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$grass, 30%);
@@ -209,7 +252,7 @@ export default {
 }
 
 .ice {
-  color: darken(v.$ice, 30%);
+  color: darken(v.$ice, 40%);
   background: v.$ice;
   border: 15px solid darken(v.$ice, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$ice, 30%);
@@ -222,7 +265,7 @@ export default {
 }
 
 .fighting {
-  color: darken(v.$fighting, 30%);
+  color: darken(v.$fighting, 40%);
   background: v.$fighting;
   border: 15px solid darken(v.$fighting, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$fighting, 30%);
@@ -235,7 +278,7 @@ export default {
 }
 
 .poison {
-  color: darken(v.$poison, 30%);
+  color: darken(v.$poison, 40%);
   background: v.$poison;
   border: 15px solid darken(v.$poison, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$poison, 30%);
@@ -248,7 +291,7 @@ export default {
 }
 
 .ground {
-  color: darken(v.$ground, 30%);
+  color: darken(v.$ground, 40%);
   background: v.$ground;
   border: 15px solid darken(v.$ground, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$ground, 30%);
@@ -261,7 +304,7 @@ export default {
 }
 
 .flying {
-  color: darken(v.$flying, 30%);
+  color: darken(v.$flying, 40%);
   background: v.$flying;
   border: 15px solid darken(v.$flying, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$flying, 30%);
@@ -274,7 +317,7 @@ export default {
 }
 
 .psychic {
-  color: darken(v.$psychic, 30%);
+  color: darken(v.$psychic, 40%);
   background: v.$psychic;
   border: 15px solid darken(v.$psychic, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$psychic, 30%);
@@ -287,7 +330,7 @@ export default {
 }
 
 .bug {
-  color: darken(v.$bug, 30%);
+  color: darken(v.$bug, 40%);
   background: v.$bug;
   border: 15px solid darken(v.$bug, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$bug, 30%);
@@ -300,7 +343,7 @@ export default {
 }
 
 .rock {
-  color: darken(v.$rock, 30%);
+  color: darken(v.$rock, 40%);
   background: v.$rock;
   border: 15px solid darken(v.$rock, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$rock, 30%);
@@ -313,7 +356,7 @@ export default {
 }
 
 .ghost {
-  color: darken(v.$ghost, 30%);
+  color: darken(v.$ghost, 40%);
   background: v.$ghost;
   border: 15px solid darken(v.$ghost, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$ghost, 30%);
@@ -326,7 +369,7 @@ export default {
 }
 
 .dragon {
-  color: darken(v.$dragon, 30%);
+  color: darken(v.$dragon, 40%);
   background: v.$dragon;
   border: 15px solid darken(v.$dragon, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$dragon, 30%);
@@ -339,7 +382,7 @@ export default {
 }
 
 .dark {
-  color: darken(v.$dark, 30%);
+  color: darken(v.$dark, 40%);
   background: v.$dark;
   border: 15px solid darken(v.$dark, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$dark, 30%);
@@ -352,7 +395,7 @@ export default {
 }
 
 .steel {
-  color: darken(v.$steel, 30%);
+  color: darken(v.$steel, 40%);
   background: v.$steel;
   border: 15px solid darken(v.$steel, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$steel, 30%);
@@ -365,7 +408,7 @@ export default {
 }
 
 .fairy {
-  color: darken(v.$fairy, 30%);
+  color: darken(v.$fairy, 40%);
   background: v.$fairy;
   border: 15px solid darken(v.$fairy, 30%);
   box-shadow: 0 18px 28px 0 lighten(v.$fairy, 30%);

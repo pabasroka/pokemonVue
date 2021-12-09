@@ -4,7 +4,7 @@
 
   <div class="desc">
     <p>
-      the journey starts today! pokémon are living creatures that inhabit the pokémon world, living alongside, and usually helping, humans.
+      the journey starts today! pokémon are living creatures that inhabit the pokémon world, living alongside, and usually helping, humans. (Wobbuffet, Snorunt, Jigglypuff, Luvdisc, Ditto, Guzzlord, Celesteela)
     </p>
 
     <p>
