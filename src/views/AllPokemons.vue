@@ -68,4 +68,13 @@ export default {
 
 }
 
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1em;
+    grid-row-gap: 100px;
+  }
+}
+
 </style>

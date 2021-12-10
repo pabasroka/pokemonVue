@@ -83,7 +83,7 @@ export default {
     .card-type {
       width: 15%;
       padding-right: 20px;
-      text-align: end;
+      text-align: center;
     }
   }
 
