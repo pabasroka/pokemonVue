@@ -6,7 +6,7 @@
         v-for="pokemon in pokemons"
         :key="pokemon.name"
     >
-      <AsyncPokemon class="card" :pokemon="pokemon"/>
+      <AsyncPokemon v-if="pokemon" class="card" :pokemon="pokemon"/>
     </div>
   </div>
 
@@ -57,12 +57,12 @@ export default {
 .wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1em 1em;
+  grid-gap: 2em 2em;
   grid-auto-rows: minmax(100px, auto);
   margin: 30px;
 
   .card {
-    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
     margin: 0;
   }
 
