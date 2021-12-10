@@ -73,7 +73,6 @@ export default {
 
       font-size: 20px;
       letter-spacing: 1px;
-      //padding: 0 20px;
     }
     .card-name {
       width: 70%;
