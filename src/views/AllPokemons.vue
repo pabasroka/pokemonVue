@@ -1,23 +1,33 @@
 <template>
 
-  <div
-      class="wrapper"
-      v-for="pokemon in pokemons"
-      :key="pokemon"
-  >
-    <PokemonCard class="card" :pokemon="pokemon"/>
+  <div class="wrapper">
+    <div
+        class="card-list"
+        v-for="pokemon in pokemons"
+        :key="pokemon.name"
+    >
+      <AsyncPokemon class="card" :pokemon="pokemon"/>
+    </div>
   </div>
 
 </template>
 
 <script>
-import PokemonCard from "@/components/PokemonCard";
 import axios from "axios";
+import {defineAsyncComponent} from "vue";
+import PulseLoader from "vue-spinner/src/PulseLoader";
+
+const AsyncPokemon = defineAsyncComponent({
+  loader: () => import("@/components/PokemonCard" /* webpackChunkName: "pokemon" */),
+  loadingComponent: PulseLoader,
+  delay: 200,
+  suspensible: false,
+})
 
 export default {
   name: "AllPokemons",
   components: {
-    PokemonCard,
+    AsyncPokemon,
   },
   data() {
     return {
@@ -25,18 +35,20 @@ export default {
     }
   },
   methods: {
-    async getAllPokemons() {
-      const basePath = "https://pokeapi.co/api/v2/"
-      const allPokemons = "pokemon?limit=2000"
-      const url = basePath + allPokemons
-      try {
-        const apiResponse = await axios(url)
-        this.pokemons = apiResponse.data
-      } catch (e) {
-        console.error(e)
-      }
-    }
+
   },
+  async created() {
+    const basePath = "https://pokeapi.co/api/v2/"
+    const allPokemons = "pokemon?limit=2000"
+    const url = basePath + allPokemons
+    try {
+      const apiResponse = await axios(url)
+      this.pokemons = apiResponse.data.results
+      // console.log(this.pokemons)
+    } catch (e) {
+      console.error(e)
+    }
+  }
 }
 </script>
 
@@ -51,7 +63,6 @@ export default {
 
   .card {
     grid-template-columns: 1fr;
-    background: red;
     margin: 0;
   }
 
