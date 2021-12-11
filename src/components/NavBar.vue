@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="sticky">
     <div id="nav">
       <router-link to="/">POKEMON</router-link>|
       <router-link to="/all">ALL</router-link>|
@@ -10,25 +10,10 @@
 </template>
 
 <script>
-import debounce from 'lodash/debounce';
 
 export default {
   name: "NavBar",
   methods: {
-    stickyNavbar() {
-      const navbar = document.querySelector('#nav')
-      const sticky = navbar.offsetTop
-
-      if (window.scrollY >= sticky) {
-        navbar.classList.add("sticky")
-      } else {
-        navbar.classList.remove("sticky");
-      }
-    }
-  },
-  mounted() {
-    this.handleDebouncedScroll = debounce(this.stickyNavbar, 100);
-    window.addEventListener('scroll', this.handleDebouncedScroll)
   },
 }
 </script>
@@ -37,13 +22,9 @@ export default {
 @use '../assets/variables' as v;
 
 .sticky {
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
   top: 0;
-  width: 100%;
-}
-
-.sticky, #nav {
-  padding-top: 260px;
 }
 
 #nav {

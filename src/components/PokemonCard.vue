@@ -81,7 +81,7 @@ export default {
     }
     .card-type {
       width: 15%;
-      padding-right: 20px;
+      padding-right: 30px;
       text-align: center;
     }
   }
