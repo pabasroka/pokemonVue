@@ -182,6 +182,12 @@ export default {
       padding: 0 50px;
       vertical-align: top;
     }
+    .stats {
+      ul {
+        display: inline-block;
+        padding: 0 20px;
+      }
+    }
   }
 }
 
