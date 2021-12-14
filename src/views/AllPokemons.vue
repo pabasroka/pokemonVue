@@ -10,12 +10,21 @@
     </div>
   </div>
 
+  <div
+      class="to-top"
+      @click="toTop"
+      v-show="screenY > 300"
+  >
+    <Icon icon="cil:arrow-top" width="100"/>
+  </div>
+
 </template>
 
 <script>
 import axios from "axios";
 import {defineAsyncComponent} from "vue";
 import PulseLoader from "vue-spinner/src/PulseLoader";
+import {Icon} from "@iconify/vue";
 
 const AsyncPokemon = defineAsyncComponent({
   loader: () => import("@/components/PokemonCard" /* webpackChunkName: "pokemon" */),
@@ -28,27 +37,45 @@ export default {
   name: "AllPokemons",
   components: {
     AsyncPokemon,
+    Icon,
   },
   data() {
     return {
       pokemons: [],
+      scTimer: 0,
+      screenY: 0,
     }
   },
   methods: {
-
+    handleScroll: function () {
+      if (this.scTimer) return;
+      this.scTimer = setTimeout(() => {
+        this.screenY = window.scrollY;
+        clearTimeout(this.scTimer);
+        this.scTimer = 0;
+      }, 100);
+    },
+    toTop: function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    },
   },
   async created() {
     const basePath = "https://pokeapi.co/api/v2/"
-    const allPokemons = "pokemon?limit=2000"
+    const allPokemons = "pokemon?limit=200" // 2000
     const url = basePath + allPokemons
     try {
       const apiResponse = await axios(url)
       this.pokemons = apiResponse.data.results
-      // console.log(this.pokemons)
     } catch (e) {
       console.error(e)
     }
-  }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
 }
 </script>
 
@@ -65,7 +92,21 @@ export default {
     grid-auto-rows: 1fr;
     margin: 0;
   }
+}
 
+.to-top {
+  position: fixed;
+  z-index: 999;
+  right: 50px;
+  bottom: 70px;
+  width: 50px;
+  height: 50px;
+  color: black;
+  transition: 0.5s;
+}
+.to-top:hover {
+  color: #d30000;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {

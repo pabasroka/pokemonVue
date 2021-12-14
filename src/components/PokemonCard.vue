@@ -5,7 +5,12 @@
     <div class="card-top">
 
       <div class="card-name">
+        <span v-if="pokemon.name.length < 12">
           {{ pokemon.name }}
+        </span>
+        <span v-else>
+          {{ pokemon.name.substring(0, 12) }}...
+        </span>
       </div>
 
       <div class="card-type">
@@ -19,7 +24,7 @@
     <div class="card-bottom">
 
       <div class="card-image">
-        <img v-if="pokemonInfo && pokemonInfo.sprites && pokemonInfo.sprites.front_default" v-bind:src="pokemonInfo.sprites.front_default" alt="sprite">
+        <img class="img" v-if="pokemonInfo && pokemonInfo.sprites && pokemonInfo.sprites.front_default" v-bind:src="pokemonInfo.sprites.front_default" alt="sprite">
       </div>
 
     </div>
@@ -73,6 +78,17 @@ export default {
       letter-spacing: 1px;
       text-align: center;
       padding-top: 10px;
+    }
+  }
+
+  .card-image {
+    .img::before {
+      content: "";
+      width: 150px;
+      height: 150px;
+      background-color: red;
+      position: absolute;
+      z-index: -1;
     }
   }
 
