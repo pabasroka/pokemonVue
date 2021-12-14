@@ -56,7 +56,7 @@ export default {
 
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-gap: 2em 2em;
   grid-auto-rows: minmax(100px, auto);
   margin: 30px;

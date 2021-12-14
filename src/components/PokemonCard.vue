@@ -65,24 +65,14 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   border-radius: 15px;
-  box-shadow: 0 58px 58px 0 lighten(#ff1d1d, 50%);
+  box-shadow: 0 18px 28px 0 #000000;
 
   .card-top {
     .card-name, .card-type {
-      display: inline-block;
-
       font-size: 20px;
       letter-spacing: 1px;
-    }
-    .card-name {
-      width: 70%;
-      padding-left: 10px;
-      text-align: start;
-    }
-    .card-type {
-      width: 15%;
-      padding-right: 30px;
       text-align: center;
+      padding-top: 10px;
     }
   }
 
@@ -93,7 +83,6 @@ export default {
   color: darken(v.$normal, 30%);
   background: v.$normal;
   border: 15px solid darken(v.$normal, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$normal, 20%);
   p {
     color: darken(v.$normal, 30%);
   }
@@ -106,7 +95,6 @@ export default {
   color: darken(v.$water, 40%);
   background: v.$water;
   border: 15px solid darken(v.$water, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$water, 20%);
   p {
     color: darken(v.$water, 30%);
   }
@@ -119,7 +107,6 @@ export default {
   color: darken(v.$electric, 40%);
   background: v.$electric;
   border: 15px solid darken(v.$electric, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$electric, 20%);
   p {
     color: darken(v.$electric, 30%);
   }
@@ -132,7 +119,6 @@ export default {
   color: darken(v.$fire, 40%);
   background: v.$fire;
   border: 15px solid darken(v.$fire, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$fire, 20%);
   p {
     color: darken(v.$fire, 30%);
   }
@@ -145,7 +131,6 @@ export default {
   color: darken(v.$grass, 40%);
   background: v.$grass;
   border: 15px solid darken(v.$grass, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$grass, 20%);
   p {
     color: darken(v.$grass, 30%);
   }
@@ -158,7 +143,6 @@ export default {
   color: darken(v.$ice, 40%);
   background: v.$ice;
   border: 15px solid darken(v.$ice, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$ice, 20%);
   p {
     color: darken(v.$ice, 30%);
   }
@@ -171,7 +155,6 @@ export default {
   color: darken(v.$fighting, 40%);
   background: v.$fighting;
   border: 15px solid darken(v.$fighting, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$fighting, 20%);
   p {
     color: darken(v.$fighting, 30%);
   }
@@ -184,7 +167,6 @@ export default {
   color: darken(v.$poison, 40%);
   background: v.$poison;
   border: 15px solid darken(v.$poison, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$poison, 20%);
   p {
     color: darken(v.$poison, 30%);
   }
@@ -197,7 +179,6 @@ export default {
   color: darken(v.$ground, 40%);
   background: v.$ground;
   border: 15px solid darken(v.$ground, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$ground, 20%);
   p {
     color: darken(v.$ground, 30%);
   }
@@ -210,7 +191,6 @@ export default {
   color: darken(v.$flying, 40%);
   background: v.$flying;
   border: 15px solid darken(v.$flying, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$flying, 20%);
   p {
     color: darken(v.$flying, 30%);
   }
@@ -223,7 +203,6 @@ export default {
   color: darken(v.$psychic, 40%);
   background: v.$psychic;
   border: 15px solid darken(v.$psychic, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$psychic, 20%);
   p {
     color: darken(v.$psychic, 30%);
   }
@@ -236,7 +215,6 @@ export default {
   color: darken(v.$bug, 40%);
   background: v.$bug;
   border: 15px solid darken(v.$bug, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$bug, 20%);
   p {
     color: darken(v.$bug, 30%);
   }
@@ -249,7 +227,6 @@ export default {
   color: darken(v.$rock, 40%);
   background: v.$rock;
   border: 15px solid darken(v.$rock, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$rock, 20%);
   p {
     color: darken(v.$rock, 30%);
   }
@@ -262,7 +239,6 @@ export default {
   color: darken(v.$ghost, 40%);
   background: v.$ghost;
   border: 15px solid darken(v.$ghost, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$ghost, 20%);
   p {
     color: darken(v.$ghost, 30%);
   }
@@ -275,7 +251,6 @@ export default {
   color: darken(v.$dragon, 40%);
   background: v.$dragon;
   border: 15px solid darken(v.$dragon, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$dragon, 20%);
   p {
     color: darken(v.$dragon, 30%);
   }
@@ -288,7 +263,6 @@ export default {
   color: darken(v.$dark, 40%);
   background: v.$dark;
   border: 15px solid darken(v.$dark, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$dark, 20%);
   p {
     color: darken(v.$dark, 30%);
   }
@@ -301,7 +275,6 @@ export default {
   color: darken(v.$steel, 40%);
   background: v.$steel;
   border: 15px solid darken(v.$steel, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$steel, 20%);
   p {
     color: darken(v.$steel, 30%);
   }
@@ -314,7 +287,6 @@ export default {
   color: darken(v.$fairy, 40%);
   background: v.$fairy;
   border: 15px solid darken(v.$fairy, 30%);
-  box-shadow: 0 0 50px 20px lighten(v.$fairy, 20%);
   p {
     color: darken(v.$fairy, 30%);
   }
