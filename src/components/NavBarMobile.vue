@@ -63,11 +63,11 @@ export default {
     font-size: 40px;
     letter-spacing: 3px;
     text-decoration: none;
-    text-shadow: -2px -2px 0 v.$yellow, 2px -2px 0 v.$yellow, -2px 2px 0 v.$yellow, 2px 2px 0 v.$yellow;
+    text-shadow: -2px -2px 0 v.$secondary, 2px -2px 0 v.$secondary, -2px 2px 0 v.$secondary, 2px 2px 0 v.$secondary;
   }
 
   a.router-link-exact-active{
-    color: v.$yellow;
+    color: v.$secondary;
     text-shadow: -5px -5px 0 #000, 5px -5px 0 #000, -5px 5px 0 #000, 5px 5px 0 #000;
   }
 }

@@ -58,10 +58,4 @@ h1 {
   }
 }
 
-.social {
-  Icon {
-    color: blue;
-  }
-}
-
 </style>

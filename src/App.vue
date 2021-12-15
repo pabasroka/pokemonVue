@@ -59,7 +59,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background: linear-gradient(to bottom, v.$yellow, darken(v.$yellow, 40%)) fixed;
+  background: linear-gradient(to bottom, v.$secondary, darken(v.$secondary, 20%)) fixed;
 }
 
 #app {
