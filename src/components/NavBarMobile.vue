@@ -47,8 +47,10 @@ export default {
   position: absolute;
   height: 100vh;
   width: 100vw;
-  background: blue;
+  background: v.$primary;
   transition: 1s transform cubic-bezier(0, .12, .14, 1);
+  z-index: 1000;
+  top: 0;
 
   li {
     list-style: none;

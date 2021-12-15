@@ -118,8 +118,7 @@ svg {
 @media only screen and (max-width: 768px) {
   .wrapper {
     display: grid;
-    grid-template-columns: 1fr;
-    padding: 1em;
+    grid-template-columns: repeat(2, 1fr);
     grid-row-gap: 100px;
   }
 }
