@@ -41,6 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/variables' as v;
 
 h1 {
   letter-spacing: 2px;
@@ -48,13 +49,17 @@ h1 {
 
 .about {
   p {
-    padding: 10px 20%;
+    padding: 10px 10%;
   }
   a {
-    color: #5d5000;
+    color: v.$primary;
     text-decoration: none;
     font-weight: bold;
     letter-spacing: 2px;
+    transition: .5s;
+    &:hover {
+      color: darken(v.$secondary, 20%);
+    }
   }
 }
 

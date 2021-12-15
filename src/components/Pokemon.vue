@@ -10,7 +10,7 @@
 
     <div class="pokemon-image-wrapper">
       <div class="pokemon-image">
-        <div class="pokemon-image-inner">
+        <div :class="[mobileView ? 'm-pokemon-image-inner' : 'pokemon-image-inner']">
 
           <div class="pokemon-image-front">
             <img v-bind:src="apidata.sprites.front_default" alt="sprite front">
@@ -24,9 +24,9 @@
       </div>
     </div>
 
-    <div class="pokemon-info">
+    <div :class="[mobileView ? 'm-pokemon-info' : 'pokemon-info']">
 
-      <div class="abilities">
+      <div :class="[mobileView ? 'm-abilities' : 'abilities']">
         <h3>
           <span v-if="apidata.abilities.length > 1">
             ABILITIES:
@@ -45,7 +45,7 @@
         </ul>
       </div>
 
-      <div class="stats">
+      <div :class="[mobileView ? 'm-stats' : 'stats']">
 
         <ul>
             <li v-for="stats in apidata.stats" :key="stats">
@@ -74,10 +74,18 @@ export default {
   data() {
     return {
       colorTheme: this.apidata.types[0].type.name ?? 'normal',
+      mobileView: false,
     }
   },
   methods: {
+    handleView() {
+      this.mobileView = window.innerWidth <= 990;
+    },
   },
+  created() {
+    this.handleView();
+    window.addEventListener('resize', this.handleView);
+  }
 }
 </script>
 
@@ -189,6 +197,28 @@ export default {
       }
     }
   }
+}
+
+// MOBILE
+.m-pokemon-image-inner {
+  position: relative;
+  right: -webkit-calc(50% - 10px);
+}
+.m-pokemon-info {
+  padding: 0 10px;
+  ul {
+    li {
+      list-style-type: none;
+    }
+  }
+}
+.m-abilities {
+  padding-top: 5px;
+  display: flex;
+}
+.m-stats {
+  display: flex;
+  padding: 0;
 }
 
 // POKEMONS TYPE THEME TODO: CHANGE TO MIXIN OR SOMETHING LIKE THAT

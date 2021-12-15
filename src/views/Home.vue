@@ -1,8 +1,8 @@
 <template>
 
-  <h1>"gotta catch em all"</h1>
+  <h1 :class="[mobileView ? 'm-header' : '']"> "gotta catch em all"</h1>
 
-  <div class="desc">
+  <div :class="[mobileView ? 'm-desc' : 'desc']">
     <p>
       the journey starts today! pokémon are living creatures that inhabit the pokémon world, living alongside, and usually helping, humans. (Wobbuffet, Snorunt, Jigglypuff, Luvdisc, Ditto, Guzzlord, Celesteela)
     </p>
@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       apidata: null,
+      mobileView: false,
     }
   },
   methods: {
@@ -40,8 +41,15 @@ export default {
     },
     clear() {
       this.apidata = null
-    }
+    },
+    handleView() {
+      this.mobileView = window.innerWidth <= 990;
+    },
   },
+  created() {
+    this.handleView();
+    window.addEventListener('resize', this.handleView);
+  }
 }
 </script>
 
@@ -65,6 +73,17 @@ h1{
 .pokemon-card {
   margin-top: 150px;
   margin-bottom: 50px;
+}
+
+// MOBILE
+.m-desc {
+  margin: auto;
+  width: 80vw;
+  text-align: center;
+}
+
+.m-header {
+  font-size: 50px;
 }
 
 </style>

@@ -2,7 +2,7 @@
   <nav class="sticky">
     <div id="nav">
       <router-link to="/">POKEMON</router-link>|
-      <router-link to="/all">ALL</router-link>|
+      <router-link to="/all">ALL POKEMONS</router-link>|
       <router-link to="/info">INFO</router-link>
     </div>
   </nav>
