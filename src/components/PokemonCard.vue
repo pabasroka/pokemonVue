@@ -24,7 +24,11 @@
     <div class="card-bottom">
 
       <div class="card-image">
-        <img class="img" v-if="pokemonInfo && pokemonInfo.sprites && pokemonInfo.sprites.front_default" v-bind:src="pokemonInfo.sprites.front_default" alt="sprite">
+        <img v-if="pokemonInfo && pokemonInfo.sprites && pokemonInfo.sprites.front_default" v-bind:src="pokemonInfo.sprites.front_default" alt="sprite">
+      </div>
+
+      <div class="number">
+        {{ pokemonNumber }}
       </div>
 
     </div>
@@ -45,9 +49,23 @@ export default {
     return {
       pokemonInfo: [],
       colorTheme: 'normal',
+      pokemonNumber: 0,
     }
   },
   methods: {
+    setPokemonNumber() {
+      this.pokemonNumber = this.pokemonInfo.id
+      let prefix = ""
+      switch (this.pokemonNumber.toString().length) {
+        case 1:
+          prefix = "00"
+          break
+        case 2:
+          prefix = "0"
+          break
+      }
+      this.pokemonNumber = "#" + prefix + this.pokemonNumber
+    },
   },
   // TODO!!! optimize get api request
   async created() {
@@ -55,7 +73,7 @@ export default {
       const apiResponse = await axios(this.pokemon.url)
       this.pokemonInfo = apiResponse.data
       this.colorTheme = this.pokemonInfo.types[0].type.name ?? 'normal'
-      console.log(this.pokemonInfo)
+      this.setPokemonNumber()
     } catch (e) {
       console.error(e)
     }
@@ -82,16 +100,21 @@ export default {
   }
 
   .card-image {
-    .img::before {
-      content: "";
-      width: 150px;
-      height: 150px;
-      background-color: red;
-      position: absolute;
-      z-index: -1;
+    position: relative;
+    z-index: 2;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: -webkit-calc(50% - 40px);
+        top: -webkit-calc(50% - 40px);
+        z-index: -1;
+        height: 80px;
+        width: 80px;
+        background: lighten(#abab98, 30%);
+        border-radius: 50%;
+      }
     }
-  }
-
 }
 
 // POKEMONS TYPE THEME TODO: CHANGE TO MIXIN OR SOMETHING LIKE THAT

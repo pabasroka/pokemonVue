@@ -15,7 +15,7 @@
       @click="toTop"
       v-show="screenY > 300"
   >
-    <Icon icon="cil:arrow-top" width="100"/>
+    <Icon icon="akar-icons:arrow-up-thick" width="80"/>
   </div>
 
 </template>
@@ -94,6 +94,12 @@ export default {
   }
 }
 
+svg {
+  background: gray;
+  border-radius: 15px;
+  border: 5px solid black;
+}
+
 .to-top {
   position: fixed;
   z-index: 999;
@@ -103,10 +109,10 @@ export default {
   height: 50px;
   color: black;
   transition: 0.5s;
-}
-.to-top:hover {
-  color: #d30000;
-  cursor: pointer;
+  &:hover {
+    color: #d30000;
+    cursor: pointer;
+  }
 }
 
 @media only screen and (max-width: 768px) {
