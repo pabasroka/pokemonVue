@@ -44,9 +44,18 @@ export default {
       pokemons: [],
       scTimer: 0,
       screenY: 0,
+      offset: 0,
+      bottom: false,
     }
   },
   methods: {
+    bottomVisible() {
+      const scrollY = window.scrollY
+      const visible = document.documentElement.clientHeight
+      const pageHeight = document.documentElement.scrollHeight
+      const bottomOfPage = visible + scrollY >= pageHeight
+      return bottomOfPage || pageHeight < visible
+    },
     handleScroll: function () {
       if (this.scTimer) return;
       this.scTimer = setTimeout(() => {
@@ -61,17 +70,37 @@ export default {
         behavior: "smooth"
       });
     },
+    async getData() {
+      const basePath = "https://pokeapi.co/api/v2/"
+      const allPokemons = `pokemon?limit=100&offset=${this.offset}`
+      const url = basePath + allPokemons
+      try {
+        const apiResponse = await axios(url)
+        console.log("api")
+        apiResponse.data.results.forEach(e => {
+          this.pokemons.push(e)
+        })
+      } catch (e) {
+        console.error(e)
+      }
+      if (this.bottomVisible()) {
+        await this.getData()
+      }
+    },
+  },
+  watch: {
+    bottom(bottom) {
+      if (bottom) {
+        this.offset += 100
+        this.getData()
+      }
+    },
   },
   async created() {
-    const basePath = "https://pokeapi.co/api/v2/"
-    const allPokemons = "pokemon?limit=200" // 2000
-    const url = basePath + allPokemons
-    try {
-      const apiResponse = await axios(url)
-      this.pokemons = apiResponse.data.results
-    } catch (e) {
-      console.error(e)
-    }
+    window.addEventListener('scroll', () => {
+      this.bottom = this.bottomVisible()
+    })
+    await this.getData()
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
